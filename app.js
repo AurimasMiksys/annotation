@@ -21,7 +21,7 @@ class EventListeners extends UiSelectors {
     }
 
     submitForm() {
-        this.formSubmitButton.addEventListener('click', userSubmitForm) 
+        this.formSubmitButton.addEventListener('click', this.userSubmitForm) 
     }
     userCloseCard() {
         this.cardCloseButton.addEventListener('click', userCloseCard) 
@@ -56,8 +56,8 @@ class CreateCloseDeleteCard extends EventListeners {
     }
 
     userSubmitForm(event) {
-        this.userSubmitForm.preventDefault()
-        console.log(this.userSubmitForm.event.target)
+        event.preventDefault()
+        console.log(event.target)
         
     }
      
@@ -68,7 +68,7 @@ class StateActiveDisabled {
 
 }
 
-const test = new CreateCloseDeleteCard
+const test = new CreateCloseDeleteCard()
 
 
 
