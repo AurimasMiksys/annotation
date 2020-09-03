@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+    <title>Note Me</title>
+  </head>
+  <body>
+    <header>
+        <div class="jumbotron jumbotron-fluid mb-1">
+            <div class="container">
+              <h1 class="display-5 text-center"><b>Note Me</b></h1>
+              <p class="lead text-center">Add Annotations To Your Design.</p>
+            </div>
+          </div>
+    </header>
+
+    <main>
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-8 border bl-1 rounded-0"><img src="https://source.unsplash.com/CW_K7JUhvaI/800x600" class="img-fluid max-width: 100%; height: auto;" alt="Image"></div>   
+    
+    
+    <div class="col-4">
+        <form>
+            <hr>
+            <div class="form-group">
+              <label for="notes">Note</label>
+              <input type="text" class="form-control" id="forminput" height="50px">
+            </div>
+            <button type="submit" class="btn btn-primary rounded-0" id="formsubmitbutton">Submit</button>
+            <hr>
+          </form>
+
+          <div class="card border mt-1 rounded-0" id="list">
+            <div class="card-body d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary btn-sm rounded-0" id="closecard">X</button>
+            </div>   
+            <p class="p-1 text-left">This is some text within a card body.</p>
+            <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
+            </div>   
+            
+
+            
+    </div>    
+      
+    </div>    
+    </div>
+    
+    </main>
+    
+    <footer>
+        <div class="container-fluid">
+        <div class="row justify-content-end">
+        <div class="col-1 mb-3 pl-3 mt-2"><button type="button" class="btn btn-dark rounded-0" id="activedisabledbutton">Active</button></div>
+        </div>
+        </div>  
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
