@@ -10,7 +10,8 @@ class UiSelectors {
 class EventListeners extends UiSelectors {
     constructor(formInput) {
         super(formInput)
-        this.formInput = formInput
+        this.formInput = formInput.value.bind(this)
+        console.log(this.formInput.value)
     }
 
     domContentLoadedWhenUserVisits() {
@@ -44,12 +45,12 @@ class CreateCloseDeleteCard extends EventListeners {
     constructor(formInput) {
         super(formInput)
         this.submitForm()
-        this.formInput = this.formInput.value
+
 
     }
     userSubmitForm(event) {
         event.preventDefault()
-        console.log(this.formInput.value)
+
     }
 }
 class StateActiveDisabled {}
