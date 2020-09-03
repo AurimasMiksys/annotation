@@ -7,70 +7,53 @@ class UiSelectors {
     formSubmitButton = document.querySelector('#formsubmitbutton')
     activeDisabledButton = document.querySelector('#activedisabledbutton')
 }
-
 class EventListeners extends UiSelectors {
+    constructor(formInput) {
+        super(formInput)
+        this.formInput = formInput
+    }
+
     domContentLoadedWhenUserVisits() {
         document.addEventListener('DOMContentLoaded', readDots)
     }
     openDot() {
-        this.displayDot.addEventListener('click', showOpenDotReadCard) 
+        this.displayDot.addEventListener('click', showOpenDotReadCard)
     }
-
     createDot() {
-        this.displayDot.addEventListener('dblclick', createDotOpenFormToSubmitToCreateNewCard) 
+        this.displayDot.addEventListener('dblclick', createDotOpenFormToSubmitToCreateNewCard)
     }
-
     submitForm() {
-        this.formSubmitButton.addEventListener('click', this.userSubmitForm) 
+        this.formSubmitButton.addEventListener('click', this.userSubmitForm)
     }
     userCloseCard() {
-        this.cardCloseButton.addEventListener('click', userCloseCard) 
+        this.cardCloseButton.addEventListener('click', userCloseCard)
     }
     userDeleteCard() {
-        this.deleteCardButton.addEventListener('click', userDeleteCard) 
+        this.deleteCardButton.addEventListener('click', userDeleteCard)
     }
     userActiveSate() {
-        this.activeDisabledButton.addEventListener('click', userClicksToActivateSate) 
+        this.activeDisabledButton.addEventListener('click', userClicksToActivateSate)
     }
 
-
 }
 
-
-class UiReadListOfDots {
-
-} 
-
-class UiReadListOfCards {
-
-}
-
-class CreateClosedot {
-
-}
-
+class UiReadListOfDots {}
+class UiReadListOfCards {}
+class CreateClosedot {}
 class CreateCloseDeleteCard extends EventListeners {
-    constructor() {
-        super()
+    constructor(formInput) {
+        super(formInput)
         this.submitForm()
-    }
+        this.formInput = this.formInput.value
 
+    }
     userSubmitForm(event) {
         event.preventDefault()
-        console.log(event.target)
-        
+        console.log(this.formInput.value)
     }
-     
-    
 }
-
-class StateActiveDisabled {
-
-}
-
-const test = new CreateCloseDeleteCard()
+class StateActiveDisabled {}
 
 
-
-
-
+//Utilities
+const create = new CreateCloseDeleteCard()
