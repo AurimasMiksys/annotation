@@ -1,17 +1,18 @@
 class UiSelectors {
-    listOfCardsContainer = document.querySelector('#list')
-    displayDot = document.querySelector('#dot')
-    cardCloseButton = document.querySelectorAll('#closecard')
-    deleteCardButton = document.querySelector('#deletebutton')
-    formInput = document.querySelector('#forminput')
-    formSubmitButton = document.querySelector('#formsubmitbutton')
-    activeDisabledButton = document.querySelector('#activedisabledbutton')
+    constructor() {
+        this.listOfCardsContainer = document.querySelector('#list')
+        this.displayDot = document.querySelector('#dot')
+        this.cardCloseButton = document.querySelectorAll('#closecard')
+        this.deleteCardButton = document.querySelector('#deletebutton')
+        this.formInput = document.querySelector('#forminput')
+        this.formSubmitButton = document.querySelector('#formsubmitbutton')
+        this.activeDisabledButton = document.querySelector('#activedisabledbutton')
+    }
+    
 }
 class EventListeners extends UiSelectors {
-    constructor(formInput) {
-        super(formInput)
-        this.formInput = formInput.value.bind(this)
-        console.log(this.formInput.value)
+    constructor() {
+        super()
     }
 
     domContentLoadedWhenUserVisits() {
@@ -24,7 +25,7 @@ class EventListeners extends UiSelectors {
         this.displayDot.addEventListener('dblclick', createDotOpenFormToSubmitToCreateNewCard)
     }
     submitForm() {
-        this.formSubmitButton.addEventListener('click', this.userSubmitForm)
+        this.formSubmitButton.addEventListener('click', this.userSubmitForm.bind(this))
     }
     userCloseCard() {
         this.cardCloseButton.addEventListener('click', userCloseCard)
@@ -42,14 +43,15 @@ class UiReadListOfDots {}
 class UiReadListOfCards {}
 class CreateClosedot {}
 class CreateCloseDeleteCard extends EventListeners {
-    constructor(formInput) {
-        super(formInput)
+    constructor() {
+        super()
         this.submitForm()
 
 
     }
     userSubmitForm(event) {
         event.preventDefault()
+        console.log('form value:', this.formInput.value)
 
     }
 }
