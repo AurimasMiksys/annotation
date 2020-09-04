@@ -1,16 +1,16 @@
 class CreateCard {
-    constructor(formInput) {
-        this.formInput = formInput
+    constructor(elements) {
+        this.formInput = elements.formInput
+        this.submitButton = elements.submitButton
+        this.listOfCardsContainer = elements.listOfCardsContainer
         
     }
     userClicksButton() {
-        const submitButton = document.querySelector('#formsubmitbutton')
-        submitButton.addEventListener('click', this.createNewCardOnUi)
+        this.submitButton.addEventListener('click', this.createNewCardOnUi.bind(this))
     }
     
     createNewCardOnUi(event) {
         event.preventDefault()
-        const listOfCardsContainer = document.querySelector('#list')
         const newCard = document.createElement('div')
         newCard.setAttribute('class', 'card border mt-1 rounded-0')
         newCard.innerHTML = `<div class="card-body d-flex justify-content-end">
@@ -19,7 +19,7 @@ class CreateCard {
         <p class="p-1 text-left">${this.formInput.value}</p>
         <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
         </div>`
-        listOfCardsContainer.appendChild(newCard)   
+        this.listOfCardsContainer.appendChild(newCard)   
     }
 }
 
@@ -27,6 +27,11 @@ class CreateCard {
 //App
 
 //Create Card
-const card = new CreateCard(document.querySelector('#forminput'))
+const card = new CreateCard({
+    formInput: document.querySelector('#forminput'),
+    submitButton: document.querySelector('#formsubmitbutton'),
+    listOfCardsContainer: document.querySelector('#list')
+
+})
 
 card.userClicksButton()
