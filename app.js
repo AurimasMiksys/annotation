@@ -25,13 +25,13 @@ class CreateCard {
 }
 class DeleteCard {
     constructor() {
-        this.deleteButton = document.querySelectorAll('#deletebutton')
+        this.deleteButton = document.querySelector('#deletebutton')
     }
     userClicksDeleteButton() {
         this.deleteButton.addEventListener('click', this.deleteCardOnUi.bind(this))
     }
     deleteCardOnUi(event) {
-        console.log('asdasdasdasdasd')
+        console.log(event, 'asdasdasdasdasd')
     }
 }
 //App
