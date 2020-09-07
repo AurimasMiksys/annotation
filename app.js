@@ -27,19 +27,20 @@ class CreateCard {
 }
 
 class DeleteCard {
-    constructor(deleteButton) {
-        this.deleteButton = deleteButton
+    constructor() {
+        this.deleteButton = document.querySelectorAll('#deletebutton')
+
     }
-    userClicksToDeleteCardButton(){
-        this.deleteButton.addEventListener('click', this.whenUserClicksToDeleteCard.bind(this))
+    userClicksDeleteButton() {
+        this.deleteButton.addEventListener('click', this.deleteCardOnUi.bind(this))
     }
 
-    whenUserClicksToDeleteCard(event) {
-        console.log('hello')
-        // if (this.clickedItem.classList.contains(`'${this.deleteButton}'`)) {
-        //     this.clickedItem.remove()
+    deleteCardOnUi(event) {
+        console.log('asdasdasdasdasd')
     }
 }
+
+
 
 
 //App
@@ -54,9 +55,8 @@ const card = new CreateCard({
 
 card.userClicksButton()
 
-const deleteCard = new DeleteCard({
-    deleteButton: document.querySelector('.btn-lg')
+const deletecard = new DeleteCard({
 })
 
-deleteCard.userClicksToDeleteCardButton()
-deleteCard.whenUserClicksToDeleteCard()
+deletecard.userClicksDeleteButton()
+
