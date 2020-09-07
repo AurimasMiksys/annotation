@@ -6,7 +6,7 @@ class CreateCard {
         this.x = y
         this.y = y
         this.iid = Date.now()
-        this.deleteButton = document.querySelector('#deletebutton')
+        // this.deleteButton = document.querySelector('#deletebutton')
     }
     userClicksButton() {
         this.submitButton.addEventListener('click', this.createNewCardOnUi.bind(this))
@@ -24,7 +24,7 @@ class CreateCard {
         this.listOfCardsContainer.appendChild(newCard)
     }
     userClicksDeleteButton() {
-        this.deleteButton.addEventListener('click', this.deleteCardOnUi.bind(this))
+        document.querySelector('#deletebutton').addEventListener('click', this.deleteCardOnUi.bind(this))
     }
     deleteCardOnUi(event) {
         console.log(event, 'asdasdasdasdasd')
