@@ -44,15 +44,13 @@ class CreateCard {
 }
 
 class Pin {
-    constructor(x, y, imageContainer) {
-        this.x = x
-        this.y = y
+    constructor(imageContainer) {
         this.imageContainer = imageContainer
     }
     userDoubleClicksToCreatePin() {
         this.imageContainer.addEventListener('dblclick', this.createPinOnUi.bind(this))
     }
-    createPinOnUi() {
+    createPinOnUi(event) {
         console.log('Create Pin on UI')
     }
 }
