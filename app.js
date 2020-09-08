@@ -3,8 +3,6 @@ class CreateCard {
         this.formInput = elements.formInput
         this.submitButton = elements.submitButton
         this.listOfCardsContainer = elements.listOfCardsContainer
-        this.x = elements.x
-        this.y = elements.y
         this.iid = Date.now()
         this.deleteButton = elements.deleteButton
         this.cardToDelete = elements.cardToDelete
