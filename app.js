@@ -30,7 +30,7 @@ class CreateCard {
     }
     deleteCardOnUi(event) {
         this.cardToDelete.remove()
-        console.log(event, 'asdasdasdasdasd')
+        console.log(event, 'I delete card on UI')
     }
 
     userClicksCloseButton() {
@@ -39,7 +39,7 @@ class CreateCard {
 
     closeCardOnUi(event) {
         this.cardToDelete.remove()
-        console.log(event, 'asdasdasdasdasd')
+        console.log(event, 'I close card on UI')
     }
 }
 //App
