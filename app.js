@@ -44,18 +44,18 @@ class CreateCard {
 }
 
 class Pin {
-    constructor(imageContainer, formField) {
-        this.imageContainer = imageContainer
-        this.formField = formField
+    constructor(elements) {
+        this.imageContainer = elements.imageContainer
+        this.formField = elements.formField
     }
     userDoubleClicksToCreatePin() {
         this.imageContainer.addEventListener('dblclick', this.createPinOnUiAndOpenFormField.bind(this))
     }
     createPinOnUiAndOpenFormField(event) {
+        let x = event.clientX
+        let y = event.clientY
         const newDot = document.createElement('div')
-        newDot.setAttribute('class', 'point')
-        newDot.setAttribute('data-card-id', 'ihavetofigureouthowtoaddid')
-        newDot.setAttribute('style', 'position: absolute; top: 10px; left: 20px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.3px; border-radius: 5px;')
+        newDot.innerHTML = `<div class="point" data-card-id="ihavetofigureouthowtoaddid" style="position: absolute; top: ${y}px; left: ${x}px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.3px; border-radius: 5px;"></div>`
         this.imageContainer.appendChild(newDot)
         this.formField.removeAttribute('style')
     }
@@ -77,6 +77,8 @@ card.userClicksDeleteButton()
 card.userClicksCloseButton()
 
 
-const pin = new Pin(document.querySelector('.imgcontainer'), document.querySelector('form'))
+const pin = new Pin({
+    imageContainer: document.querySelector('.imgcontainer'),
+    formField: document.querySelector('form')})
 
 pin.userDoubleClicksToCreatePin()
