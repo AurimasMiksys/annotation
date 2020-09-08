@@ -44,10 +44,16 @@ class CreateCard {
 }
 
 class Pin {
-    constructor() {
+    constructor(x, y, imageContainer) {
         this.x = x
         this.y = y
-        
+        this.imageContainer = imageContainer
+    }
+    userDoubleClicksToCreatePin() {
+        this.imageContainer.addEventListener('dblclick', this.createPinOnUi.bind(this))
+    }
+    createPinOnUi() {
+        console.log('Create Pin on UI')
     }
 }
 
@@ -64,3 +70,8 @@ const card = new CreateCard({
 card.userClicksButton()
 card.userClicksDeleteButton()
 card.userClicksCloseButton()
+
+
+const pin = new Pin({
+    imageContainer: document.querySelector('.col-8 border bl-1 rounded-0')
+})
