@@ -73,7 +73,7 @@ card.userClicksCloseButton()
 
 
 const pin = new Pin({
-    imageContainer: document.querySelector('img.img-fluid.max-width:.100%;.height:.auto;')
+    imageContainer: document.querySelector('img.img-fluid')
 })
 
 pin.userDoubleClicksToCreatePin()
