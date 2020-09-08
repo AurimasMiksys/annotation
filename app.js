@@ -44,18 +44,20 @@ class CreateCard {
 }
 
 class Pin {
-    constructor(imageContainer) {
+    constructor(imageContainer, formField) {
         this.imageContainer = imageContainer
+        this.formField = formField
     }
     userDoubleClicksToCreatePin() {
-        this.imageContainer.addEventListener('dblclick', this.createPinOnUi.bind(this))
+        this.imageContainer.addEventListener('dblclick', this.createPinOnUiAndOpenFormField.bind(this))
     }
-    createPinOnUi(event) {
+    createPinOnUiAndOpenFormField(event) {
         const newDot = document.createElement('div')
         newDot.setAttribute('class', 'point')
-        newDot.setAttribute('data-card-id', 'ihavetofigureouthow')
+        newDot.setAttribute('data-card-id', 'ihavetofigureouthowtoaddid')
         newDot.setAttribute('style', 'position: absolute; top: 10px; left: 20px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.3px; border-radius: 5px;')
         this.imageContainer.appendChild(newDot)
+        this.formField.removeAttribute('style')
     }
 }
 
@@ -75,6 +77,6 @@ card.userClicksDeleteButton()
 card.userClicksCloseButton()
 
 
-const pin = new Pin(document.querySelector('.imgcontainer'))
+const pin = new Pin(document.querySelector('.imgcontainer'), document.querySelector('form'))
 
 pin.userDoubleClicksToCreatePin()
