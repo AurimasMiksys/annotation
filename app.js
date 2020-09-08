@@ -36,8 +36,9 @@ class CreateCard {
     userClicksCloseButton() {
         this.closeCardButton.addEventListener('click', this.closeCardOnUi.bind(this))
     }
+
     closeCardOnUi(event) {
-        this.closeCardOnUi.remove()
+        this.cardToDelete.remove()
         console.log(event, 'asdasdasdasdasd')
     }
 }
