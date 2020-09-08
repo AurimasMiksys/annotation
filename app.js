@@ -32,6 +32,14 @@ class CreateCard {
         this.cardToDelete.remove()
         console.log(event, 'asdasdasdasdasd')
     }
+
+    userClicksCloseButton() {
+        this.closeCardButton.addEventListener('click', this.closeCardOnUi.bind(this))
+    }
+    closeCardOnUi(event) {
+        this.cardToDelete.remove()
+        console.log(event, 'asdasdasdasdasd')
+    }
 }
 //App
 //Create Card
