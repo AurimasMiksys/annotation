@@ -55,7 +55,7 @@ class Pin {
         let x = event.clientX
         let y = event.clientY
         const newDot = document.createElement('div')
-        newDot.innerHTML = `<span class="point" data-card-id="${y}${x}" style="position: absolute; top: ${y}px; left: ${x}px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.1px; border-radius: 5px;"></div>`
+        newDot.innerHTML = `<span class="point" data-card-id="${x}${y}" style="position: absolute; top: ${y}px; left: ${x}px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.1px; border-radius: 5px;"></div>`
         document.querySelector('body').appendChild(newDot)
         this.formField.removeAttribute('style')
     }
