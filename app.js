@@ -8,6 +8,7 @@ class CreateCard {
         this.iid = Date.now()
         this.deleteButton = elements.deleteButton
         this.cardToDelete = elements.cardToDelete
+        this.closeCardButton = elements.closeCardButton
     }
     userClicksButton() {
         this.submitButton.addEventListener('click', this.createNewCardOnUi.bind(this))
@@ -39,7 +40,8 @@ const card = new CreateCard({
     submitButton: document.querySelector('#formsubmitbutton'),
     listOfCardsContainer: document.querySelector('#list'),
     deleteButton: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0'),
-    cardToDelete: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0').parentElement.parentElement
+    cardToDelete: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0').parentElement.parentElement,
+    closeCardButton: document.querySelector('#closecard')
 })
 card.userClicksButton()
 card.userClicksDeleteButton()
