@@ -51,12 +51,17 @@ class Pin {
         this.imageContainer.addEventListener('dblclick', this.createPinOnUi.bind(this))
     }
     createPinOnUi(event) {
-        console.log('Create Pin on UI')
+        const newDot = document.createElement('div')
+        newDot.setAttribute('class', 'point')
+        newDot.setAttribute('data-card-id', 'ihavetofigureouthow')
+        newDot.setAttribute('style', 'position: absolute; top: 10px; left: 20px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.3px; border-radius: 5px;')
+        this.imageContainer.appendChild(newDot)
     }
 }
 
 //App
 //Create Card
+
 const card = new CreateCard({
     formInput: document.querySelector('#forminput'),
     submitButton: document.querySelector('#formsubmitbutton'),
@@ -70,8 +75,6 @@ card.userClicksDeleteButton()
 card.userClicksCloseButton()
 
 
-const pin = new Pin({
-    imageContainer: document.querySelector('img.img-fluid')
-})
+const pin = new Pin(document.querySelector('.imgcontainer'))
 
 pin.userDoubleClicksToCreatePin()
