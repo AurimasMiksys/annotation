@@ -42,6 +42,15 @@ class CreateCard {
         console.log(event, 'I close card on UI')
     }
 }
+
+class Pin {
+    constructor() {
+        this.x = x
+        this.y = y
+        
+    }
+}
+
 //App
 //Create Card
 const card = new CreateCard({
