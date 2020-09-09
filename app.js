@@ -59,6 +59,32 @@ class Pin {
     }
 }
 
+class State {
+    constructor(activeDisabledButton) {
+    this.activeDisabledButton = activeDisabledButton
+}
+active() {
+    this.activeDisabledButton.addEventListener('click', this.activatePage.bind(this))
+}
+disable() {
+    this.activeDisabledButton.addEventListener('click', this.disablePage.bind(this))
+}
+activatePage(event) {
+    let item = event.target
+    if (item.innerHTML === 'Disabled') {
+        item.innerHTML = 'Active'
+    }
+    console.log('I activate Page')
+}
+disablePage(event) {
+    let item = event.target
+    if (item.innerHTML === 'Active') {
+        item.innerHTML = 'Disabled'
+    }
+    console.log('I disable Page')
+}
+}
+
 //App
 //Create Card
 
@@ -80,3 +106,8 @@ const pin = new Pin({
     formField: document.querySelector('form')})
 
 pin.userDoubleClicksToCreatePin()
+
+const state = new State(document.querySelector("#activedisabledbutton"))
+
+state.active()
+state.disable()
