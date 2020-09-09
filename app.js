@@ -3,7 +3,7 @@ class CreateCard {
         this.formInput = elements.formInput
         this.submitButton = elements.submitButton
         this.listOfCardsContainer = elements.listOfCardsContainer
-        this.iid = Date.now()
+        this.iid = elements.iid
         this.deleteButton = elements.deleteButton
         this.cardToDelete = elements.cardToDelete
         this.closeCardButton = elements.closeCardButton
@@ -89,7 +89,8 @@ const card = new CreateCard({
     listOfCardsContainer: document.querySelector('#list'),
     deleteButton: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0'),
     cardToDelete: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0').parentElement.parentElement,
-    closeCardButton: document.querySelector('#closecard')
+    closeCardButton: document.querySelector('#closecard'),
+    iid: Date.now()
 })
 card.userClicksButton()
 card.userClicksDeleteButton()
