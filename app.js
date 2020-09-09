@@ -50,6 +50,7 @@ class Pin {
         this.imageContainer.addEventListener('dblclick', this.createPinOnUiAndOpenFormField.bind(this))
     }
     createPinOnUiAndOpenFormField(event) {
+        console.log('I create Pin on UI')
         let x = event.clientX
         let y = event.clientY
         const newDot = document.createElement('div')
@@ -66,22 +67,13 @@ class State {
 active() {
     this.activeDisabledButton.addEventListener('click', this.activatePage.bind(this))
 }
-disable() {
-    this.activeDisabledButton.addEventListener('click', this.disablePage.bind(this))
-}
+
 activatePage(event) {
     let item = event.target
     if (item.innerHTML === 'Disabled') {
         item.innerHTML = 'Active'
     }
     console.log('I activate Page')
-}
-disablePage(event) {
-    let item = event.target
-    if (item.innerHTML === 'Active') {
-        item.innerHTML = 'Disabled'
-    }
-    console.log('I disable Page')
 }
 }
 
@@ -110,4 +102,3 @@ pin.userDoubleClicksToCreatePin()
 const state = new State(document.querySelector("#activedisabledbutton"))
 
 state.active()
-state.disable()
