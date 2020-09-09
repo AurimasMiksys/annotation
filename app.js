@@ -60,6 +60,7 @@ class Pin {
     }
 }
 
+
 class State {
     constructor(activeDisabledButton) {
     this.activeDisabledButton = activeDisabledButton
