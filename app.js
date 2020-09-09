@@ -65,17 +65,17 @@ class State {
     this.activeDisabledButton = activeDisabledButton
 }
 active() {
-    this.activeDisabledButton.addEventListener('click', this.activateDisablePage.bind(this))
+    this.activeDisabledButton.addEventListener('click', this.activatePage.bind(this))
 }
 
-activateDisablePage(event) {
+activatePage(event) {
     let item = event.target
     if (item.innerHTML === 'Disabled') {
         item.innerHTML = 'Active'
     } else {
         item.innerHTML = 'Disabled'
     }
-    console.log('I activate and Disable Page')
+    console.log('I activate Page')
 }
 }
 
@@ -103,4 +103,4 @@ pin.userDoubleClicksToCreatePin()
 
 const state = new State(document.querySelector("#activedisabledbutton"))
 
-state.activateDisablePage()
+state.active()
