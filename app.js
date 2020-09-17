@@ -45,6 +45,7 @@ class CreateCard {
     }
 
     cards[id] = {
+    CardsID: id,    
     text: inputValue,
     }
 
@@ -80,7 +81,7 @@ class CreateCard {
         console.log(event, 'I delete card on UI')
     }
 
-    userClicksCloseButton() {
+    userClicksCloseButton(event) {
         this.closeCardButton.addEventListener('click', this.closeCardOnUi.bind(this))
     }
 
@@ -170,14 +171,13 @@ class Pin {
 
     const newCard = document.createElement('div')
         newCard.setAttribute('class', 'card border mt-1 rounded-0')
-        newCard.innerHTML = `<div class="card-body d-flex justify-content-end" id="${card}" coordinates="${this.x}${this.y}">
+        newCard.innerHTML = `<div class="card-body d-flex justify-content-end" id="${cards[id].CardsID}" coordinates="${this.x}${this.y}">
         <button type="submit" class="btn btn-primary btn-sm rounded-0" id="closecard">X</button>
         </div>
         <p class="p-1 text-left">${card.text}</p>
         <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
         </div>`
         document.querySelector('#list').appendChild(newCard)
-        
         }
         
 }
@@ -227,7 +227,7 @@ const card = new CreateCard({
 })
 card.userClicksButton()
 card.userClicksDeleteButton()
-card.userClicksCloseButton()
+// card.userClicksCloseButton()
 
 const state = new State(document.querySelector("#activedisabledbutton"))
 
