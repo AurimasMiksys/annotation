@@ -32,6 +32,8 @@ class CreateCard {
         <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
         </div>`
         this.listOfCardsContainer.appendChild(newCard)
+
+        document.getElementById('deletebutton').addEventListener('click', this.deleteCardOnUi.bind(this))
         
         this.saveCardToLocal(this.iid, this.formInput.value)
     }
@@ -77,7 +79,7 @@ class CreateCard {
         this.deleteButton.addEventListener('click', this.deleteCardOnUi.bind(this))
     }
     deleteCardOnUi(event) {
-        this.cardToDelete.remove()
+        // this.cardToDelete.remove()
         console.log(event, 'I delete card on UI')
     }
 
@@ -191,6 +193,7 @@ class Pin {
         <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
         </div>`
         document.querySelector('#list').appendChild(newCard)
+        document.getElementById('deletebutton').addEventListener('click', (e) => {console.log('Cant use delete function because its in another class :/')})
         
         }
         
