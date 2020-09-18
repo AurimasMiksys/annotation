@@ -14,9 +14,9 @@ class CreateCard {
         this.submitButton = elements.submitButton
         this.listOfCardsContainer = elements.listOfCardsContainer
         this.iid = pin.id
-        this.deleteButton = elements.deleteButton
-        this.cardToDelete = elements.cardToDelete
-        this.closeCardButton = elements.closeCardButton
+        // this.deleteButton = elements.deleteButton
+        // this.cardToDelete = elements.cardToDelete
+        // this.closeCardButton = elements.closeCardButton
     }
     userClicksButton() {
         this.submitButton.addEventListener('click', this.createNewCardOnUi.bind(this))
@@ -129,6 +129,19 @@ class Pin {
 
     localStorage.setItem('pins', JSON.stringify(pins))
     console.log('I save a pin to local storage')
+
+    const card = new CreateCard({
+        formInput: document.querySelector('#forminput'),
+        submitButton: document.querySelector('#formsubmitbutton'),
+        listOfCardsContainer: document.querySelector('#list'),
+        // deleteButton: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0'),
+        // cardToDelete: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0').parentElement.parentElement,
+        // closeCardButton: document.querySelector('#closecard')
+    })
+
+    card.userClicksButton()
+    // card.userClicksDeleteButton()
+    // card.userClicksCloseButton()
     }
 
     getPinsOnUiFromLocal() {
@@ -178,6 +191,7 @@ class Pin {
         <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
         </div>`
         document.querySelector('#list').appendChild(newCard)
+        
         }
         
 }
@@ -217,16 +231,16 @@ pin.getPinsOnUiFromLocal()
 pin.userDoubleClicksToCreatePin()
 
 
-const card = new CreateCard({
-    formInput: document.querySelector('#forminput'),
-    submitButton: document.querySelector('#formsubmitbutton'),
-    listOfCardsContainer: document.querySelector('#list'),
-    deleteButton: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0'),
-    cardToDelete: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0').parentElement.parentElement,
-    closeCardButton: document.querySelector('#closecard')
-})
-card.userClicksButton()
-card.userClicksDeleteButton()
+// const card = new CreateCard({
+//     formInput: document.querySelector('#forminput'),
+//     // submitButton: document.querySelector('#formsubmitbutton'),
+//     listOfCardsContainer: document.querySelector('#list'),
+//     // deleteButton: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0'),
+//     // cardToDelete: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0').parentElement.parentElement,
+//     // closeCardButton: document.querySelector('#closecard')
+// })
+// card.userClicksButton()
+// card.userClicksDeleteButton()
 // card.userClicksCloseButton()
 
 const state = new State(document.querySelector("#activedisabledbutton"))
