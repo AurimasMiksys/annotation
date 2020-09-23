@@ -1,253 +1,119 @@
 class Utils {
-    
-   get generateId() {
-    return Date.now()
+    get generateId() {
+        return Date.now()
     }
 }
+const utils = new Utils()
 
-let utils = new Utils()
-console.log(utils)
-
-class CreateCard {
-    constructor(elements) {
-        this.formInput = elements.formInput
-        this.submitButton = elements.submitButton
-        this.listOfCardsContainer = elements.listOfCardsContainer
-        this.iid = pin.id
-        // this.deleteButton = elements.deleteButton
-        // this.cardToDelete = elements.cardToDelete
-        // this.closeCardButton = elements.closeCardButton
-    }
-    userClicksButton() {
-        this.submitButton.addEventListener('click', this.createNewCardOnUi.bind(this))
-    }
-    createNewCardOnUi(event) {
-        event.preventDefault()
-        const newCard = document.createElement('div')
-        newCard.setAttribute('class', 'card border mt-1 rounded-0')
-        newCard.innerHTML = `<div class="card-body d-flex justify-content-end" id="${this.iid}" coordinates="${this.x}${this.y}">
-        <button type="submit" class="btn btn-primary btn-sm rounded-0" id="closecard">X</button>
-        </div>
-        <p class="p-1 text-left">${this.formInput.value}</p>
-        <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
-        </div>`
-        this.listOfCardsContainer.appendChild(newCard)
-
-        document.getElementById('deletebutton').addEventListener('click', this.deleteCardOnUi.bind(this))
-        
-        this.saveCardToLocal(this.iid, this.formInput.value)
-    }
-
-    saveCardToLocal(id, inputValue) {
-        let cards
-    if (localStorage.getItem('cards') === null) {
-    cards = {}
-    } else {
-    cards = JSON.parse(localStorage.getItem('cards'))
-    }
-
-    cards[id] = {
-    CardsID: id,    
-    text: inputValue,
-    }
-
-    localStorage.setItem('cards', JSON.stringify(cards))
-    console.log('I save a card to a local storage')
-    }
-
-    getCardsFromLocal() {
-        let cards
-        if (localStorage.getItem('cards') === null) {
-          cards = {}
-        } else {
-          cards = JSON.parse(localStorage.getItem('cards'))
-        }
-        for (let id in cards) {
-        const newCard = document.createElement('div')
-        newCard.setAttribute('class', 'card border mt-1 rounded-0')
-        newCard.innerHTML = `<div class="card-body d-flex justify-content-end" id="${this.iid}" coordinates="${this.x}${this.y}">
-        <button type="submit" class="btn btn-primary btn-sm rounded-0" id="closecard">X</button>
-        </div>
-        <p class="p-1 text-left">${this.formInput.value}</p>
-        <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
-        </div>`
-        this.listOfCardsContainer.appendChild(newCard)
-    }
-}
-
-    userClicksDeleteButton() {
-        this.deleteButton.addEventListener('click', this.deleteCardOnUi.bind(this))
-    }
-    deleteCardOnUi(event) {
-        // this.cardToDelete.remove()
-        console.log(event, 'I delete card on UI')
-    }
-
-    userClicksCloseButton(event) {
-        this.closeCardButton.addEventListener('click', this.closeCardOnUi.bind(this))
-    }
-
-    closeCardOnUi(event) {
-        this.cardToDelete.remove()
-        console.log(event, 'I close card on UI')
-    }
-}
-
-class Pin {
-    constructor(elements) {
-        this.imageContainer = elements.imageContainer
-        this.formField = elements.formField
-        this.x = elements.x
-        this.y = elements.y
+class Point {
+    constructor(x,y) {
+        this.x = x
+        this.y = y
         this.id = utils.generateId
+    }
+}
+class Card {
+    constructor(pointId, text) {
+        this.pointId = pointId
+        this.text = text
+        this.id = utils.generateId
+    }
+}
+class Annotations {
+    constructor() {
+        this.points = JSON.parse(localStorage.getItem('points')) || []
+        this.cards = JSON.parse(localStorage.getItem('cards')) || []
+        this.activePoint = null
+        this.activeCards = []
+    }
+    addPoint(event) {
+        console.log('add point')
+        let point = new Point(event.clientX, event.clientY)
 
-    }
-    userDoubleClicksToCreatePin() {
-        this.imageContainer.addEventListener('dblclick', this.createPinOnUiAndOpenFormField.bind(this))
-    }
-    createPinOnUiAndOpenFormField(event) {
-        console.log('I create Pin on UI')
         let x = event.clientX
         let y = event.clientY
-        const newDot = document.createElement('div')
-        newDot.innerHTML = `<span class="point" data-card-id="${this.id}" style="position: absolute; top: ${y}px; left: ${x}px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.1px; border-radius: 5px;"></div>`
-        document.querySelector('body').appendChild(newDot)
-        this.formField.removeAttribute('style')
-        this.savePinToLocal(this.id, x, y)
+        console.log(event.clientX, event.clientY)
+        console.log(point.id)
+            
+
+        this.points.push(point)
+        localStorage.setItem('points', JSON.stringify(this.points))
+        this.activePoint = point.id
+        console.log(point.id, 'cia point id turi buti')
+        this.drawPoints(this.activePoint, x, y)
     }
-    savePinToLocal(id,x,y) {
-        let pins
-    if (localStorage.getItem('pins') === null) {
-    pins = {}
-    } else {
-    pins = JSON.parse(localStorage.getItem('pins'))
-    }
-
-    pins[id] = {
-    CardsID: id,
-    CoordX: x,
-    CoordY: y
-    }
-
-    localStorage.setItem('pins', JSON.stringify(pins))
-    console.log('I save a pin to local storage')
-
-    const card = new CreateCard({
-        formInput: document.querySelector('#forminput'),
-        submitButton: document.querySelector('#formsubmitbutton'),
-        listOfCardsContainer: document.querySelector('#list'),
-        // deleteButton: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0'),
-        // cardToDelete: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0').parentElement.parentElement,
-        // closeCardButton: document.querySelector('#closecard')
-    })
-
-    card.userClicksButton()
-    // card.userClicksDeleteButton()
-    // card.userClicksCloseButton()
-    }
-
-    getPinsOnUiFromLocal() {
-    document.addEventListener('DOMContentLoaded', this.getPinsFromLocal.bind(this))
-    }
-
-    getPinsFromLocal() {
-        let pins
-        if (localStorage.getItem('pins') === null) {
-          pins = {}
-        } else {
-          pins = JSON.parse(localStorage.getItem('pins'))
+    addCard(event) {
+        event.preventDefault()
+        console.log('Add card')
+        if(!this.activePoint) {
+           return
         }
-        for (let id in pins) {
-        const newDot = document.createElement('div')
-        newDot.innerHTML = `<span class="point" data-card-id="${pins[id].CardsID}" style="position: absolute; top: ${pins[id].CoordY}px; left: ${pins[id].CoordX}px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.1px; border-radius: 5px;"></div>`
-        document.querySelector('body').appendChild(newDot)
-        }
-        //Event Listener to click on the blue dot
-        document.querySelectorAll('.point').forEach((blueDot) => {
-        blueDot.addEventListener('click', this.clickPinToShowCardFromLocal)
-        
-        })
-    }
-    
-    clickPinToShowCardFromLocal(event) {
-        let item = event.target
-        let id = item.getAttribute('data-card-id')
-        console.log(id)
- 
-    let cards
-    if (localStorage.getItem('cards') === null) {
-    cards = {}
-    } else {
-    cards = JSON.parse(localStorage.getItem('cards'))
-    }
-
-    const card = cards[id]
-    if(!card) return
-
-    const newCard = document.createElement('div')
-        newCard.setAttribute('class', 'card border mt-1 rounded-0')
-        newCard.innerHTML = `<div class="card-body d-flex justify-content-end" id="${cards[id].CardsID}" coordinates="${this.x}${this.y}">
-        <button type="submit" class="btn btn-primary btn-sm rounded-0" id="closecard">X</button>
-        </div>
-        <p class="p-1 text-left">${card.text}</p>
-        <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
-        </div>`
-        document.querySelector('#list').appendChild(newCard)
-        document.getElementById('deletebutton').addEventListener('click', (e) => {console.log('Cant use delete function because its in another class :/')})
-        
-        }
-        
-}
-
     
 
-
-
-class State {
-    constructor(activeDisabledButton) {
-    this.activeDisabledButton = activeDisabledButton
-}
-active() {
-    this.activeDisabledButton.addEventListener('click', this.activatePage.bind(this))
-}
-
-activatePage(event) {
-    let item = event.target
-    if (item.innerHTML === 'Disabled') {
-        item.innerHTML = 'Active'
-    } else {
-        item.innerHTML = 'Disabled'
+        console.log(this.activePoint, 'cia turi buti this active point')
+        let card = new Card(this.activePoint, document.querySelector('input#forminput.form-control').value)
+        let text = document.querySelector('input#forminput.form-control').value
+        this.cards.push(card)
+        localStorage.setItem('cards', JSON.stringify(this.cards))
+        this.drawCard(this.activePoint, text)
     }
-    console.log('I activate Page')
+
+    clickPoint(event) {
+        // this.activePoint = pointId
+
+    //     this.activeCards = this.getCards(pointId) // sitas tik siap sau, kolkas nzn ar bus naudinga
+        // this.drawCards(this.activePoint)
+
+        console.log(event, 'cia clickPoint active point event testuoju dabar')
+    }
+    // getCards(pointId) {
+    //     this.cards.filter(card => card.pointId === pointId)
+    // }
+
+    drawPoints(point, x, y) {
+
+            let el = document.createElement('div')
+            el.innerHTML = `<span class="point" data-card-id="${point}" style="position: absolute; top: ${y}px; left: ${x}px; background: #22b2ea; width: 15px; height: 15px; border: solid 0.1px; border-radius: 5px;"></div>`
+            document.querySelector('body').appendChild(el)
+            document.querySelector('form').removeAttribute('style')
+            el.addEventListener('click', this.clickPoint.bind(this))
+
+    }
+    
+    // drawCards(cards) {
+    //     // pirmiausia reikes istrinti visa html is korteliu sidebare pries piesiant is naujo
+    //     cards.forEach(card => {
+    //         el = this.drawCard(card);
+    //         document.querySelector('cards-sidebar').append(el)
+    // //     })
+    // }
+    drawCard(cardid, text) {
+        const el = document.createElement('div')
+         el.setAttribute('class', 'card border mt-1 rounded-0')
+         el.innerHTML = `<div class="card-body d-flex justify-content-end" data-card-id="${cardid}">
+         <button type="submit" class="btn btn-primary btn-sm rounded-0" id="closecard">X</button>
+         </div>
+         <p class="p-1 text-left">${text}</p>
+         <button type="submit" class="btn btn-primary btn-lg rounded-0" id="deletebutton">Delete</button>
+         </div>`
+         document.querySelector('#list').appendChild(el)
+    }
 }
-}
 
-//App
-//Create Card
+let annotations = new Annotations()
 
-const pin = new Pin({
-    imageContainer: document.querySelector('img'),
-    formField: document.querySelector('form')})
+document.querySelector('img').addEventListener('dblclick', annotations.addPoint.bind(annotations))
+document.querySelector('button.btn.btn-primary.rounded-0').addEventListener('click', annotations.addCard.bind(annotations))
 
 
-pin.getPinsOnUiFromLocal()
-pin.userDoubleClicksToCreatePin()
 
 
-// const card = new CreateCard({
-//     formInput: document.querySelector('#forminput'),
-//     // submitButton: document.querySelector('#formsubmitbutton'),
-//     listOfCardsContainer: document.querySelector('#list'),
-//     // deleteButton: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0'),
-//     // cardToDelete: document.querySelector('button#deletebutton.btn.btn-primary.btn-lg.rounded-0').parentElement.parentElement,
-//     // closeCardButton: document.querySelector('#closecard')
+
+
+
+// document.querySelectorAll('.point').forEach(point => {
+//     addEventListener('dblclick', annotations.addPoint)
+
+// point.addEventListener('click', annotations.clickPoint)
 // })
-// card.userClicksButton()
-// card.userClicksDeleteButton()
-// card.userClicksCloseButton()
-
-const state = new State(document.querySelector("#activedisabledbutton"))
-
-state.active()
-
-
+// document.addEventListener('dbclick', annotations.clickPoint)
